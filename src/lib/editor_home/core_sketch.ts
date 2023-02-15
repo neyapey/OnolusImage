@@ -1,7 +1,7 @@
 import type { Image } from "p5";
 import type p5 from 'p5'
 
-export function getCoreSketch(imageUrl:string): ((p:p5)=>void) {
+export function createCoreSketch(imageUrl:string): ((p:p5)=>void) {
     return (p:p5) => {
         let img:Image
         let width = 512

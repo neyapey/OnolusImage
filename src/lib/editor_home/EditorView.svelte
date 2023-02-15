@@ -1,5 +1,6 @@
 <script lang="ts">
     import p5 from "p5";
+    import ControlView, { EditorControlType } from "../editor_control/ControlView.svelte";
     import {getCoreSketch} from "./core_sketch";
     import { p5Store } from "./image_store";
 
@@ -25,4 +26,8 @@
         bind:files 
         />
     {/if}
+</div>
+<div>
+    Controls:
+    <ControlView  />
 </div>

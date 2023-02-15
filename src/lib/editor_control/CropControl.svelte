@@ -1,11 +1,21 @@
 <script lang="ts">
     import type IEditorControlHooks from "./editor_control_if";
 
+    /** x and y of top left corner of cropped region*/
     let topLeft:[number, number] = [0, 0];
-    let size:[number, number] = [0, 0]
-    let canSize: [number, number] = [0, 0]
+
+    /** width and height of cropped image */
+    let size:[number, number] = [0, 0] //w, h
+    let canSize: [number, number] = [0, 0] // W, H
 
     export const cropControlHooks:IEditorControlHooks = {
+        init(p) {
+            canSize[0] = p.p5.width
+            canSize[1] = p.p5.height
+            topLeft = [0, 0]
+            size = [canSize[0]/2, canSize[1]/2]
+        },
+
         predraw(p) {
             if(canSize[0] != p.p5.width) canSize[0] = p.p5.width
             if(canSize[1] != p.p5.height) canSize[1] = p.p5.height
@@ -38,11 +48,12 @@
         },
 
         draw(p) {
-            p.p5.image(p.image, topLeft[0], topLeft[1], p.p5.width, p.p5.height)
+            p.gr.image(p.image, topLeft[0], topLeft[1], p.p5.width, p.p5.height)
         },
 
         drawFinal(p) {
-            
+            p.p5.resizeCanvas(size[0], size[1])
+            p.p5.image(p.image, -topLeft[0], -topLeft[1])
         }
     }
 
