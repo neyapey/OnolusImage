@@ -16,12 +16,10 @@
             size = [canSize[0]/2, canSize[1]/2]
         },
 
-        predraw(p) {
+        draw: (p) => {
             if(canSize[0] != p.p5.width) canSize[0] = p.p5.width
             if(canSize[1] != p.p5.height) canSize[1] = p.p5.height
-        },
 
-        postdraw_virt: (p) => {
             const gr = p.gr
             let w = gr.width
             let h = gr.height
@@ -45,9 +43,7 @@
             gr.line(topLeft[0] + size[0], topLeft[1] + size[1], topLeft[0] + size[0], topLeft[1] + size[1] - h/10)
             
             gr.pop()
-        },
 
-        draw(p) {
             p.gr.image(p.image, topLeft[0], topLeft[1], p.p5.width, p.p5.height)
         },
 

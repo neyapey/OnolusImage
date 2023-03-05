@@ -10,22 +10,13 @@
 
     export let onActivateController:(hooks:IEditorControlHooks)=>void
     export let onDeactivateController:()=>void
-    export let onFinalize:(hooks:IEditorControlHooks)=>void
+    export let onFinalize:()=>void
 
     let activeControlType: EditorControlType | null = null
 
     const controls:{-readonly [P in EditorControlType]: IEditorControlHooks | null} = {
         CROP: null,
         FLIP_ROTATE: null
-    }
-
-    export const activateController = (controller: EditorControlType) => {
-        activeControlType = controller
-        return controls[controller]
-    }
-
-    export const deactivateController = () => {
-        activeControlType = null
     }
 </script>
 
